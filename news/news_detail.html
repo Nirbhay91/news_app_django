@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ news_item.name }}</h1>
+    <p>{{ news_item.description }}</p>
+    <p>Created: {{ news_item.created }}</p>
+    <p>Date: {{ news_item.date }}</p>
+    <p>Author: {{ news_item.author }}</p>
+    <img src="{{ news_item.image.url }}" alt="{{ news_item.name }}" width="400">
+    <p>Source: <a href="{{ news_item.source }}">{{ news_item.source }}</a></p>
+    <a href="{% url 'edit_news' news_item.id %}">Edit</a>
+    <form action="{% url 'delete_news' news_item.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+{% endblock %}

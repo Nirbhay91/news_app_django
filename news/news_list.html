@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>News List</h1>
+    <ul>
+    {% for news_item in news_items %}
+        <li><a href="{% url 'news_detail' news_item.id %}">{{ news_item.name }}</a></li>
+    {% empty %}
+        <li>No news items yet.</li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'create_news' %}">Create New News Item</a>
+{% endblock %}
